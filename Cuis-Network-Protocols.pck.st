@@ -1846,7 +1846,7 @@ httpShowPage: url
 	(StringHolder new contents: doc) openLabel: url.
 ! !
 
-!HTTPSocketSqueak class methodsFor: 'class initialization' stamp: 'ar 7/10/2010 13:59'!
+!HTTPSocketSqueak class methodsFor: 'class initialization' stamp: 'pb 12/19/2015 13:59'!
 initialize
 	"HTTPSocket initialize"
 
@@ -1855,7 +1855,9 @@ initialize
 	HTTPBlabEmail := ''.  "	'From: somebody@no.where', CrLf	"
 	HTTPProxyCredentials := ''.
 
+	"FIXME - no idea what this is for, but it doesn't exist anymore
 	ExternalSettings registerClient: self.
+	"
 	self removeHTTPProxyPreferences.! !
 
 !HTTPSocketSqueak class methodsFor: 'proxy settings' stamp: 'mir 8/23/2002 14:29'!
@@ -1872,9 +1874,10 @@ proxyUser: userName password: password
 	encoded := (userName, ':', password) base64Encoded.
 	HTTPProxyCredentials := 'Proxy-Authorization: Basic ' , encoded, String crlf! !
 
-!HTTPSocketSqueak class methodsFor: 'proxy settings' stamp: 'ar 7/10/2010 14:01'!
+!HTTPSocketSqueak class methodsFor: 'proxy settings' stamp: 'pb 12/19/2015 14:01'!
 removeHTTPProxyPreferences
 	" This method will remove the old HTTP Proxy preferences. "
+		"FIXME - no longer exists
 	(Preferences valueOfPreference: #httpProxyServer) ifNotNil:[
 		HTTPProxyServer := Preferences valueOfPreference: #httpProxyServer.
 		Preferences removePreference: #httpProxyServer.
@@ -1883,6 +1886,8 @@ removeHTTPProxyPreferences
 		HTTPProxyPort := Preferences valueOfPreference: #httpProxyPort.
 		Preferences removePreference: #httpProxyPort.
 	].
+		"
+	^ nil
 ! !
 
 !HTTPSocketSqueak class methodsFor: 'proxy settings' stamp: 'mir 7/30/1999 15:03'!
